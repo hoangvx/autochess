@@ -2,8 +2,9 @@ package db
 
 import (
     "github.com/jinzhu/gorm"
-    _ "github.com/jinzhu/gorm/dialects/postgres" // Use PostgreSQL in gorm
-		"autochess/entity"
+    _ "github.com/jinzhu/gorm/dialects/postgres"
+    "autochess/entity"
+    "os"
 )
 
 var (
@@ -11,9 +12,15 @@ var (
     err error
 )
 
+// const LOCAL_URL = "postgres://app_user:admin@localhost:5432/autochess?sslmode=disable"
+
 // Init is initialize db from main function
 func Init() {
-    db, err = gorm.Open("postgres", "host=0.0.0.0 port=5432 user=app_user dbname=autochess password=admin sslmode=disable")
+    db_url := os.Getenv("DATABASE_URL")
+    // if db_url == "" {
+    //     db_url = LOCAL_URL
+    // }
+    db, err = gorm.Open("postgres", db_url)
     if err != nil {
         panic(err)
     }
