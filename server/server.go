@@ -2,6 +2,7 @@ package server
 
 import (
     "github.com/gin-gonic/gin"
+    "github.com/gin-contrib/static"
 
     "autochess/controller"
 )
@@ -15,6 +16,7 @@ func Init() {
 func router() *gin.Engine {
     r := gin.Default()
     r.LoadHTMLGlob("client/*.html")
+    r.Use(static.Serve("/assets", static.LocalFile("./client", true)))
     staticCtrl := controller.StaticController{}
     r.GET("", staticCtrl.Index)
 

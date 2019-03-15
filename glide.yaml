@@ -7,3 +7,4 @@ import:
   subpackages:
   - dialects/postgres
 - package: github.com/gin-contrib/sse
+- package: github.com/gin-contrib/static
