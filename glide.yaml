@@ -6,3 +6,4 @@ import:
   version: v1.9.2
   subpackages:
   - dialects/postgres
+- package: github.com/gin-contrib/sse
