@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: autochess
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data"
+    networks:
+      - autochess
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8081:80"
+    networks:
+      - autochess
+    environment:
+      PGADMIN_DEFAULT_EMAIL: hoang.vx@glv.co.jp
+      PGADMIN_DEFAULT_PASSWORD: abc1234
+
+networks:
+  autochess:
+    driver: bridge
