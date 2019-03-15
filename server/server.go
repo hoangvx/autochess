@@ -14,6 +14,9 @@ func Init() {
 
 func router() *gin.Engine {
     r := gin.Default()
+    r.LoadHTMLGlob("client/*.html")
+    staticCtrl := controller.StaticController{}
+    r.GET("", staticCtrl.Index)
 
     u := r.Group("/users")
     {
