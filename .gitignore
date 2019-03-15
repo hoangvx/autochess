@@ -46,5 +46,4 @@ _testmain.go
 /test/times.out
 /vendor
 /tmp
-/db
 /pgdata
