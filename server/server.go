@@ -15,8 +15,10 @@ func Init() {
 
 func router() *gin.Engine {
     r := gin.Default()
-    r.LoadHTMLGlob("client/*.html")
-    r.Use(static.Serve("/assets", static.LocalFile("./client", true)))
+    r.LoadHTMLGlob("client/dist/*.html")
+    r.Use(static.Serve("/js", static.LocalFile("./client/dist/js", true)))
+    r.Use(static.Serve("/css", static.LocalFile("./client/dist/css", true)))
+    r.Use(static.Serve("/img", static.LocalFile("./client/dist/img", true)))
     staticCtrl := controller.StaticController{}
     r.GET("", staticCtrl.Index)
 
