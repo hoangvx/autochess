@@ -28,6 +28,7 @@ export default {
 
   div.ht-countDownWrapper span {
     display: block;
+    color: white;
   }
 
   span.ht-countDownNumber {
@@ -40,7 +41,23 @@ export default {
   }
 
   span.ht-countDownLabel {
-    font-size: .3em;
+    font-size: .25em;
     text-align: left;
+  }
+
+  /* IPX Portrait and Landscape */
+  @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3) { 
+    span.ht-countDownNumber {
+      height: 60px;
+      width: 60px;
+      line-height: 60px;
+      font-size: 25px;
+    }
+    span.ht-countDownLabel {
+      font-size: 8px;
+    }
   }
 </style>

@@ -1,17 +1,19 @@
 <template>
   <el-container id="ht-homepage" >
-    <el-row type="flex" justify="center" align="middle">
+    <el-row type="flex" align="middle">
       <el-col id="ht-countdown">
-        <el-row type="flex" justyfy="center">
+        <el-row style="height: 200px"/>
+        <el-row class="hidden-xs-only">
           <el-col>
-            <CountDownLabel v-if="years" :count="years" type="Years" />
-            <CountDownLabel v-if="months" :count="months" type="Months" />
-            <CountDownLabel :count="days" type="Days" />
-            <CountDownLabel :count="hours" type="Hours" />
-            <CountDownLabel :count="minutes" type="Minutes" />
-            <CountDownLabel :count="seconds" type="Seconds" />
+            <CountDownLabel v-if="years" :count="years" type="YEARS" />
+            <CountDownLabel v-if="months" :count="months" type="MONTHS" />
+            <CountDownLabel :count="days" type="DAYS" />
+            <CountDownLabel :count="hours" type="HOURS" />
+            <CountDownLabel :count="minutes" type="MINUTES" />
+            <CountDownLabel :count="seconds" type="SECONDS" />
           </el-col>
         </el-row>
+        <ImageSlide />
       </el-col>
     </el-row>
   </el-container>
@@ -63,7 +65,6 @@
 
   #ht-countdown {
     text-align: center;
-    color: white;
     font-size: 4em;
   }
 </style>
@@ -72,6 +73,7 @@
 import moment from 'moment'
 // components
 import CountDownLabel from '../components/CountDownLabel'
+import ImageSlide from '../components/ImageSlide'
 
 export default {
   name: 'home',
@@ -132,7 +134,8 @@ export default {
     })
   },
   components: {
-    CountDownLabel
+    CountDownLabel,
+    ImageSlide
   }
 }
 </script>
