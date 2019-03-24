@@ -33,31 +33,31 @@ export default {
 
   span.ht-countDownNumber {
     background:rgba(40,50,61,.5);
-    height: 120px;
-    width: 120px;
+    height: 60px;
+    width: 60px;
     text-align: center;
     vertical-align: middle;
-    line-height: 120px;
+    line-height: 60px;
+    font-size: 2em;
   }
 
   span.ht-countDownLabel {
-    font-size: .25em;
+    font-size: .2em;
     text-align: left;
   }
 
   /* IPX Portrait and Landscape */
-  @media only screen 
+  /* @media only screen 
     and (min-device-width: 375px) 
     and (max-device-width: 812px) 
     and (-webkit-min-device-pixel-ratio: 3) { 
     span.ht-countDownNumber {
-      height: 60px;
-      width: 60px;
-      line-height: 60px;
-      font-size: 25px;
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
     }
     span.ht-countDownLabel {
-      font-size: 8px;
+      font-size: .15em;
     }
-  }
+  } */
 </style>
