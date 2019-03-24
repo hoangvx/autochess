@@ -1,7 +1,49 @@
 <template>
   <div id="ht-wrapper">
+    <!-- <transition name="slide">
+      <div id="ht-spin" v-if="loading">
+        <el-row type="flex" justify="center" align="middle">
+          <el-row>
+            <Spin />
+          </el-row>
+        </el-row>
+      </div>
+    </transition> -->
     <div id="ht-top">
-      <el-row type="flex" align="bottom" id="ht-info">
+      <div id="ht-cover"></div>
+      <div id="ht-cover_info">
+        <el-container>
+          <el-header height="80px">
+            <el-menu mode="horizontal">
+              <el-menu-item index="1">About</el-menu-item>
+              <el-menu-item index="1">Galery</el-menu-item>
+            </el-menu>
+            <img src="../assets/images/logo2.png"/>
+          </el-header>
+          <el-main>
+            <el-row type="flex" justify="center" align="bottom">
+              <div id="ht-cover_name">
+                <h1>Xuan Hoang</h1>
+                <h1>&</h1>
+                <h1>Khanh Trang</h1>
+              </div>
+            </el-row>
+          </el-main>
+          <el-footer height="150px">
+            <el-row type="flex" align="middle">
+              <el-col id="ht-countdown">
+                <CountDownLabel v-if="years" :count="years" type="YEARS" />
+                <CountDownLabel v-if="months" :count="months" type="MONTHS" />
+                <CountDownLabel :count="days" type="DAYS" />
+                <CountDownLabel :count="hours" type="HOURS" />
+                <CountDownLabel :count="minutes" type="MINUTES" />
+                <CountDownLabel :count="seconds" type="SECONDS" />
+              </el-col>
+            </el-row>
+          </el-footer>
+        </el-container>
+      </div>
+      <!-- <el-row type="flex" align="bottom" id="ht-info">
         <el-col>
           <el-row type="flex" align="middle">
             <el-col id="ht-countdown">
@@ -14,7 +56,7 @@
             </el-col>
           </el-row>
         </el-col>
-      </el-row>
+      </el-row> -->
     </div>
     <div id="ht-content">
       <el-container id="ht-sec1" direction="vertical">
@@ -34,7 +76,7 @@
               <p>It is a long established fact that a reader will 
                 be distracted by the readable content of a page when looking at its layout. 
                 The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                 as opposed to using 'Content here, content here', making it look like readable English</p>
+                as opposed to using 'Content here, content here', making it look like readable English</p>
             </div>
           </el-col>
           <el-col :xs="24" :lg="12" :md="12" :sm="12">
@@ -57,7 +99,7 @@
               <p>It is a long established fact that a reader will 
                 be distracted by the readable content of a page when looking at its layout. 
                 The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                 as opposed to using 'Content here, content here', making it look like readable English</p>
+                as opposed to using 'Content here, content here', making it look like readable English</p>
             </div>
           </el-col>
         </el-row>
@@ -96,13 +138,48 @@
     margin: 0;
   }
 
-  html, body, #ht-wrapper {
+  html, body, 
+  #ht-wrapper, #ht-top {
     padding: 0;
     margin: 0;
     height: 100%;
   }
 
-  #ht-top {
+  #ht-cover_info {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+
+  #ht-spin {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  #ht-spin,
+  #ht-spin > .el-row {
+    height: 100%;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+  /* Trước 2.1.8 thì dùng .slide-fade-leave-active */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  #ht-cover {
     height: 100%;
     background-image: url(../assets/images/cover.jpg);
     background-repeat: no-repeat;
@@ -114,13 +191,13 @@
     position: relative;
   }
 
-  #ht-top:before {
+  #ht-cover:before {
     content: ' ';
     position: absolute;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(to bottom right,#002f4b,black);
-    opacity: .3;
+    opacity: .5;
   }
 
   #ht-info {
@@ -227,6 +304,55 @@
     margin-bottom: 60px;
   }
 
+  /* Top Section */
+  div#ht-cover_info > section {
+    height: 100%;
+  }
+
+  header {
+    position: relative;
+  }
+
+  header img {
+    height: 200%;
+    object-fit: cover;
+    padding: 0;
+  }
+
+  header ul.el-menu.el-menu--horizontal {
+    border-color: #edcc59;
+  }
+
+  header ul.el-menu {
+    position: absolute;
+    width: 100%;
+    background: transparent;
+    height: 80px;
+    width: calc(100% - 230px);
+    margin: 0;
+    right: 50px;
+  }
+
+  header ul.el-menu > .el-menu-item {
+    height: 80px;color: #edcc59;
+    line-height: 80px;
+    float: right;
+  }  
+
+  main {
+    height: calc(100% - 150px - 80px);
+  }
+
+  main > .el-row {
+    height: 100%;
+  }
+
+  #ht-cover_name {
+    text-align: center;
+    font-size: 3em;
+    color: white;
+  }
+
   /* IPX Portrait and Landscape */
   @media only screen 
     and (min-device-width: 375px) 
@@ -235,6 +361,9 @@
     #ht-content {
       padding: 0 10px;
     }
+    #ht-cover_name {
+    font-size: 2em;
+  }
   }
 </style>
 
@@ -245,6 +374,8 @@ import { faHeartbeat } from '@fortawesome/free-solid-svg-icons'
 // components
 import CountDownLabel from '../components/CountDownLabel'
 import Timeline from '../components/Timeline'
+// import Spin from '../components/Spin'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faHeartbeat)
 
@@ -254,6 +385,7 @@ export default {
     return {
       startDate: moment("2019-07-26"),
       duration: null,
+      loading: true
     }
   },
   computed: {
@@ -304,13 +436,18 @@ export default {
       setInterval(function() {
         self.duration = moment.duration(self.duration.as('milliseconds') - 1000, 'milliseconds')
       }, 1000)
+
+      setTimeout(function() {
+        self.loading = false
+      }, 5000);
     })
   },
   components: {
     CountDownLabel,
     // ImageSlide,
     FontAwesomeIcon,
-    Timeline
+    Timeline,
+    // Spin
   }
 }
 </script>

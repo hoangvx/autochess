@@ -1,63 +1,18 @@
 <template>
   <div id="ht-timeline">
     <ul>
-      <li>
+      <li v-for="story in stories" :key="story.id">
         <div class="ht-timeline_badge">
           <font-awesome-icon icon="heart" />
         </div>
         <div class="ht-timeline_content">
           <div class="ht-timeline_heading">
-            <h2>2018-01-01</h2>
+            <h2>{{ story.date }}</h2>
           </div>
           <div class="ht-timeline_body">
-            <img src="../assets/images/hoang.jpg">
-            <h2>event 1</h2>
-            <p>lorems</p>
-          </div>
-        </div>
-      </li>
-      <li class="ht-timeline_reverse">
-        <div class="ht-timeline_badge">
-          <font-awesome-icon icon="heart" />
-        </div>
-        <div class="ht-timeline_content">
-          <div class="ht-timeline_heading">
-            <h2>2018-01-01</h2>
-          </div>
-          <div class="ht-timeline_body">
-            <img src="../assets/images/hoang.jpg">
-            <h2>event 1</h2>
-            <p>lorems</p>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="ht-timeline_badge">
-          <font-awesome-icon icon="heart" />
-        </div>
-        <div class="ht-timeline_content">
-          <div class="ht-timeline_heading">
-            <h2>2018-01-01</h2>
-          </div>
-          <div class="ht-timeline_body">
-            <img src="../assets/images/hoang.jpg">
-            <h2>event 1</h2>
-            <p>lorems</p>
-          </div>
-        </div>
-      </li>
-      <li class="ht-timeline_reverse">
-        <div class="ht-timeline_badge">
-          <font-awesome-icon icon="heart" />
-        </div>
-        <div class="ht-timeline_content">
-          <div class="ht-timeline_heading">
-            <h2>2018-01-01</h2>
-          </div>
-          <div class="ht-timeline_body">
-            <img src="../assets/images/hoang.jpg">
-            <h2>event 1</h2>
-            <p>lorems</p>
+            <img :src="story.image">
+            <h2>{{ story.title }}</h2>
+            <p>{{ story.content }}</p>
           </div>
         </div>
       </li>
@@ -72,8 +27,20 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faHeart)
 
+import stories from '../data/stories'
+
 export default {
   name: 'Timeline',
+  data: function() {
+    return {
+      stories
+    }
+  },
+  mounted: function() {
+    require('../assets/images/trang.jpg')
+    this.$nextTick(function() {
+    })
+  },
   components: {
     FontAwesomeIcon
   }
@@ -141,18 +108,17 @@ export default {
 
   #ht-timeline ul li > .ht-timeline_content {
     top: -10px;
-    width: 41%;
+    width: calc(47% - 60px);
     float: left;
     border-radius: 2px;
-    padding: 20px 20px 50px 20px;
     position: relative;
     background: transparent;
     border: solid 3px #69655a;
     border-radius: 5px;
-
+    padding: 20px;
   }
 
-  #ht-timeline ul li.ht-timeline_reverse > .ht-timeline_content {
+  #ht-timeline ul li:nth-child(even) > .ht-timeline_content {
     float: right;
   }
 
@@ -180,14 +146,14 @@ export default {
     content: " ";
   }
 
-  #ht-timeline ul li.ht-timeline_reverse > .ht-timeline_content::before {
+  #ht-timeline ul li:nth-child(even) > .ht-timeline_content::before {
     border-left-width: 0;
     border-right-width: 17px;
     left: -18px;
     right: auto;
   }
 
-  #ht-timeline ul li.ht-timeline_reverse > .ht-timeline_content::after {
+  #ht-timeline ul li:nth-child(even) > .ht-timeline_content::after {
     border-left-width: 0;
     border-right-width: 14px;
     left: -14px;
@@ -200,7 +166,7 @@ export default {
     margin-bottom: 10px;
   }
 
-  #ht-timeline ul li.ht-timeline_reverse .ht-timeline_heading h2 {
+  #ht-timeline ul li:nth-child(even) .ht-timeline_heading h2 {
     text-align: left;
   }
 
